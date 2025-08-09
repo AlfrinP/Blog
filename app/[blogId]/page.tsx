@@ -3,12 +3,18 @@
 import { useGetBlogs } from "@/app/api/posts/query";
 import Badge from "@/components/Badge";
 import { blogsDataList } from "@/constants/data";
-import { dataTagErrorSymbol } from "@tanstack/react-query";
 import Image from "next/image";
+import { use } from "react";
+type BlogPageProps = {
+  params: Promise<{
+    blogId: string;
+  }>;
+};
 
-export default function Blog(params: { blogId: string }) {
-  const { blogId } = params;
-  // const { isPending, isError, data, error } = useGetBlogs(blogId);
+export default function Blog({ params }: BlogPageProps) {
+  const { blogId } = use(params); // Use React.use() to unwrap the Promise
+  const { isPending, isError, data, error } = useGetBlogs(blogId);
+
   return (
     <div className="max-w-7xl w-full mx-auto p-4.5 space-y-4.5">
       <h1 className="text-7xl">{blogsDataList[0].title}</h1>
@@ -37,7 +43,6 @@ export default function Blog(params: { blogId: string }) {
         height={1000}
         className="w-full rounded-2xl h-[500px] object-cover"
       />
-
       <p className="text-xl text-left ">{blogsDataList[0].data}</p>
     </div>
   );
