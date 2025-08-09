@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
+import TanstackProvider from "./TanstackProvider";
 
 const hanken_grotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -18,9 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${hanken_grotesk.className} antialiased`}>
-        {children}
-      </body>
+      <TanstackProvider>
+        <body className={`${hanken_grotesk.className} antialiased`}>
+          {children}
+        </body>
+      </TanstackProvider>
     </html>
   );
 }

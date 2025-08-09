@@ -11,7 +11,7 @@ export default function NavBar() {
     { title: "Contact us", href: "/contact" },
   ];
   return (
-    <header className="flex">
+    <header className="flex mb-10">
       <Link href="/">
         {/* <Image /> */}
         <h1 className="text-2xl font-bold">My Website</h1>

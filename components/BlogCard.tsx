@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type BlogCardProp = {
   thumbNail: string;
@@ -18,7 +19,10 @@ export function BlogCard({
   timeToRead,
 }: BlogCardProp) {
   return (
-    <div className="flex flex-col max-w-80 w-full items-start justify-center gap-3">
+    <Link
+      className="flex flex-col max-w-80 w-full items-start justify-center gap-3"
+      href="123"
+    >
       <Image
         src={thumbNail}
         alt={title}
@@ -42,6 +46,6 @@ export function BlogCard({
         <div className="rounded-full size-1 bg-gray-700"></div>
         <span className="text-gray-700">{`${timeToRead} min read`}</span>
       </div>
-    </div>
+    </Link>
   );
 }

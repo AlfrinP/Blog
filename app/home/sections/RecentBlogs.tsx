@@ -1,3 +1,4 @@
+"use client";
 import { useGetRecentBlogs } from "@/app/api/posts/query";
 import { BlogPost } from "@/app/api/posts/type";
 import { BlogCard } from "@/components/BlogCard";

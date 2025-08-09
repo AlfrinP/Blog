@@ -1,9 +1,11 @@
+"use client";
 import { useGetFeaturedBlogs } from "@/app/api/posts/query";
 import { BlogPost } from "@/app/api/posts/type";
 import Badge from "@/components/Badge";
 import BlogCardMini from "@/components/BlogCardMini";
 import { FeaturedBlogsSkeleton } from "@/components/FeaturedBlogsSkeleton";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FeaturedBlogs() {
   const { isPending, isError, data, error } = useGetFeaturedBlogs();
@@ -20,7 +22,10 @@ export default function FeaturedBlogs() {
 
   return (
     <section className="flex gap-5">
-      <div className="relative w-3/5 flex-1 rounded-xl overflow-clip">
+      <Link
+        className="relative w-3/5 flex-1 rounded-xl overflow-clip"
+        href="123"
+      >
         {featuredBlogs[0] ? (
           <>
             <Image
@@ -38,7 +43,7 @@ export default function FeaturedBlogs() {
             </div>
           </>
         ) : null}
-      </div>
+      </Link>
       <div className="flex flex-col w-2/5 items-start justify-between">
         <span className="font-medium text-2xl text-slate-800">
           Other featured posts

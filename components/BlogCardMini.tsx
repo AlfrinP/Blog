@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type BlogCardMiniPropType = {
   thumbNail: string;
@@ -10,7 +11,7 @@ export default function BlogCardMini({
   title,
 }: BlogCardMiniPropType) {
   return (
-    <div className="flex items-center justify-start gap-3">
+    <Link className="flex items-center justify-start gap-3" href="123">
       <Image
         src={thumbNail}
         alt={title}
@@ -19,6 +20,6 @@ export default function BlogCardMini({
         className="rounded-2xl object-cover h-16 w-20"
       />
       <p className="font-medium">{title}</p>
-    </div>
+    </Link>
   );
 }
