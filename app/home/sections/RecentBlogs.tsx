@@ -14,7 +14,7 @@ export default function RecentBlogs() {
 
   if (error || isError) recentBlogs = [];
 
-  if (data) recentBlogs = data.data;
+  if (data) recentBlogs = data;
   return (
     <section>
       <div className="flex justify-between items-center mb-10">

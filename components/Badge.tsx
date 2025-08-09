@@ -1,7 +1,7 @@
 export default function Badge({ text }: { text: string }) {
   return (
-    <div className="p-[1px] rounded-full .gradient-border">
-      <span className="text-xs text-black">{text}</span>
-    </div>
+    <span className="px-2 py-1 text-xs text-black rounded-full border-[1px] border-white">
+      {text}
+    </span>
   );
 }

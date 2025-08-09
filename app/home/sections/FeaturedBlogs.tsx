@@ -14,11 +14,13 @@ export default function FeaturedBlogs() {
 
   if (error || isError) featuredBlogs = [];
 
-  if (data) featuredBlogs = data.data;
+  if (data) featuredBlogs = data;
+
+  console.log(featuredBlogs);
 
   return (
     <section className="flex gap-5">
-      <div className="relative w-3/5 h-full rounded-xl overflow-clip">
+      <div className="relative w-3/5 flex-1 rounded-xl overflow-clip">
         {featuredBlogs[0] ? (
           <>
             <Image
@@ -42,7 +44,7 @@ export default function FeaturedBlogs() {
           Other featured posts
         </span>
         <div className="flex flex-col gap-2.5 divide-y-[1.5px] divide-gray-200 pt-2 *:pb-2 *:last:pb-0 w-full">
-          {featuredBlogs?.slice(0, 5).map((blogData: BlogPost) => (
+          {featuredBlogs?.slice(1, 6).map((blogData: BlogPost) => (
             <BlogCardMini
               thumbNail={blogData.img}
               title={blogData.title}

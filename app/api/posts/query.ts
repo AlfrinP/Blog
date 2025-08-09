@@ -10,11 +10,11 @@ import { AxiosResponse } from "axios";
 export function getFeaturedBlogs(): Promise<
   AxiosResponse<featuredBlogResponse>
 > {
-  return axiosInstance.get("/featuredPosts");
+  return axiosInstance.get("/featuredBlogs");
 }
 
 export function getRecentBlogs(): Promise<AxiosResponse<recentBlogResponse>> {
-  return axiosInstance.get("/recentPosts");
+  return axiosInstance.get("/recentBlogs");
 }
 
 export function getBlogs(
@@ -27,7 +27,7 @@ export function useGetFeaturedBlogs() {
   return useQuery({
     queryKey: ["featuredPosts"],
     queryFn: getFeaturedBlogs,
-    select: (data) => data.data,
+    select: (response) => response.data.data,
   });
 }
 
@@ -35,7 +35,7 @@ export function useGetRecentBlogs() {
   return useQuery({
     queryKey: ["recentPosts"],
     queryFn: getRecentBlogs,
-    select: (data) => data.data,
+    select: (response) => response.data.data,
   });
 }
 
@@ -43,7 +43,7 @@ export function useGetBlogs(blogId: string) {
   return useQuery({
     queryKey: ["blog", blogId],
     queryFn: () => getBlogs(blogId),
-    select: (data) => data.data,
+    select: (response) => response.data.data,
     enabled: !!blogId,
   });
 }
