@@ -1,0 +1,47 @@
+import Image from "next/image";
+
+type BlogCardProp = {
+  thumbNail: string;
+  title: string;
+  subTitle: string;
+  profilePic: string;
+  profileName: string;
+  timeToRead: string;
+};
+
+export function BlogCard({
+  thumbNail,
+  title,
+  subTitle,
+  profilePic,
+  profileName,
+  timeToRead,
+}: BlogCardProp) {
+  return (
+    <div className="flex flex-col max-w-80 w-full items-start justify-center gap-3">
+      <Image
+        src={thumbNail}
+        alt={title}
+        className="rounded-xl"
+        width={1000}
+        height={1000}
+      />
+      <p className="font-semibold text-xl line-clamp-2 text-slate-900">
+        {title}
+      </p>
+      <p className="leading-5 line-clamp-2 text-gray-700">{subTitle}</p>
+      <div className="flex items-center justify-start gap-2">
+        <Image
+          src={profilePic}
+          alt={profileName}
+          width={100}
+          height={100}
+          className="rounded-full size-7 object-cover"
+        />
+        <span className="text-gray-700">{profileName}</span>
+        <div className="rounded-full size-1 bg-gray-700"></div>
+        <span className="text-gray-700">{`${timeToRead} min read`}</span>
+      </div>
+    </div>
+  );
+}
