@@ -4,7 +4,7 @@ import { BlogPageProps } from '../type';
 import BlogClient from './BlogClient';
 
 export async function generateMetadata({ params }: BlogPageProps) {
-  const { blogId } = params;
+  const { blogId } = await params;
   const response = await getBlogs(blogId);
   const blog = response.data;
 
@@ -31,5 +31,6 @@ export async function generateMetadata({ params }: BlogPageProps) {
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
-  return <BlogClient blogId={params.blogId} />;
+  const { blogId } = await params;
+  return <BlogClient blogId={blogId} />;
 }
