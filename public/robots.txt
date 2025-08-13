@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://blog-nextjs.appwrite.network/
+
+# Sitemaps
+Sitemap: https://blog-nextjs.appwrite.network/sitemap.xml

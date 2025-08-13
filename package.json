@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.84.2",
@@ -16,6 +17,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "next": "15.4.5",
+    "next-sitemap": "^4.2.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "rehype-highlight": "^7.0.2",
