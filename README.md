@@ -2,6 +2,8 @@
 
 A modern, elegant, and fully responsive blog platform built with Next.js, TypeScript, and Tailwind CSS.
 
+<img width="1519" height="1136" alt="Screenshot 2025-08-14 021431" src="https://github.com/user-attachments/assets/61b8783f-4535-4d86-a66e-bcf914022223" />
+
 ## Features
 
 - SSR and SEO-optimized with dynamic metadata
