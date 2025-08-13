@@ -1,11 +1,11 @@
 'use client';
 import { useGetFeaturedBlogs } from '@/app/api/posts/query';
-import { BlogPost } from '@/app/api/posts/type';
-import Badge from '@/components/Badge';
-import BlogCardMini from '@/components/BlogCardMini';
-import { FeaturedBlogsSkeleton } from '@/components/FeaturedBlogsSkeleton';
+import Badge from '@/app/components/Badge';
+import BlogCardMini from '@/app/components/BlogCardMini';
+import { FeaturedBlogsSkeleton } from '@/app/components/FeaturedBlogsSkeleton';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BlogPost } from '../type';
 
 export default function FeaturedBlogs() {
   const { isPending, isError, data, error } = useGetFeaturedBlogs();
@@ -25,7 +25,7 @@ export default function FeaturedBlogs() {
           <>
             <Image
               src={featuredBlogs[0].img}
-              alt="hero image"
+              alt={featuredBlogs[0].title}
               width={1000}
               height={1000}
               className="relative size-full object-cover"

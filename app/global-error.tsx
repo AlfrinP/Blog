@@ -1,14 +1,8 @@
 'use client';
-import Button from '@/components/Button';
+import Button from '@/app/components/Button';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { DefaultError } from '@tanstack/react-query';
-
-type GlobalErrorProps = {
-  error: DefaultError;
-  reset: () => void;
-  resetButtonText?: string;
-};
+import { GlobalErrorProps } from './type';
 
 export default function GlobalError({ error, reset, resetButtonText = 'Try again' }: GlobalErrorProps) {
   const router = useRouter();

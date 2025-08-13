@@ -6,10 +6,10 @@ import rehypeStringify from 'rehype-stringify';
 
 export async function markdownToHtml(markdownString: string): Promise<string> {
   const result = await unified()
-    .use(remarkParse) // parse markdown
-    .use(remarkRehype) // markdown → HTML AST
-    .use(rehypeHighlight) // syntax highlight
-    .use(rehypeStringify) // HTML string
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
     .process(markdownString);
 
   return result.toString();

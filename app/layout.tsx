@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Hanken_Grotesk } from 'next/font/google';
-import './globals.css';
+import './styles/globals.css';
 import TanstackProvider from './TanstackProvider';
 
 const hanken_grotesk = Hanken_Grotesk({

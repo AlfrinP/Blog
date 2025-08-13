@@ -1,15 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-type BlogCardProp = {
-  thumbNail: string;
-  title: string;
-  subTitle: string;
-  profilePic: string;
-  profileName: string;
-  timeToRead: string;
-  blogId: string;
-};
+import { BlogCardProp } from '../type';
 
 export function BlogCard({ thumbNail, title, subTitle, profilePic, profileName, timeToRead, blogId }: BlogCardProp) {
   return (

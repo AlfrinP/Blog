@@ -1,6 +1,6 @@
+import { BlogPost } from '@/app/type';
 import { axiosInstance } from '../AxiosInstance';
 import { useQuery } from '@tanstack/react-query';
-import { BlogPost, featuredBlogResponse, getBlogsResponse, recentBlogResponse } from './type';
 import { AxiosResponse } from 'axios';
 
 export function getFeaturedBlogs(): Promise<AxiosResponse<BlogPost[]>> {

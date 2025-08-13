@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-type BlogCardMiniPropType = {
-  thumbNail: string;
-  title: string;
-  blogId: string;
-};
+import { BlogCardMiniPropType } from '../type';
 
 export default function BlogCardMini({ thumbNail, title, blogId }: BlogCardMiniPropType) {
   return (

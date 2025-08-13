@@ -1,11 +1,11 @@
 .blog-content {
   /* Center content with optimal reading width */
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
   font-size: 1.125rem; /* 18px base */
   line-height: 1.75;
-  color: #1a1a1a;
+  color: #111;
 
   /* Smooth text rendering */
   -webkit-font-smoothing: antialiased;
@@ -15,16 +15,35 @@
   background: #ffffff;
 }
 
+@media (max-width: 900px) {
+  .blog-content {
+    max-width: 100%;
+    padding: 2rem 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .blog-content {
+    padding: 1.25rem 0.25rem;
+    font-size: 1rem;
+  }
+}
+
 /* ========================================
    TYPOGRAPHY HIERARCHY
-   ======================================== */
-.blog-content h1 {
-  font-size: 2.5rem; /* 40px */
+   /* ======================================== */
+/* Headings */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
   font-weight: 700;
+  color: #181818;
+  margin-top: 2.2em;
+  margin-bottom: 0.7em;
   line-height: 1.2;
-  margin: 3rem 0 1.5rem 0;
-  color: #0f0f0f;
-  letter-spacing: -0.02em;
 }
 
 .blog-content h2 {

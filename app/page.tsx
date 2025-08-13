@@ -1,4 +1,4 @@
-import NavBar from '@/components/NavBar';
+import NavBar from '@/app/components/NavBar';
 import FeaturedBlogs from './sections/FeaturedBlogs';
 import RecentBlogs from './sections/RecentBlogs';
 

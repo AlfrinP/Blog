@@ -1,10 +1,10 @@
 'use client';
 import { useGetRecentBlogs } from '@/app/api/posts/query';
-import { BlogPost } from '@/app/api/posts/type';
-import { BlogCard } from '@/components/BlogCard';
-import Button from '@/components/Button';
-import RecentBlogsSkeleton from '@/components/RecentBlogsSkeleton';
+import { BlogCard } from '@/app/components/BlogCard';
+import Button from '@/app/components/Button';
+import RecentBlogsSkeleton from '@/app/components/RecentBlogsSkeleton';
 import React from 'react';
+import { BlogPost } from '../type';
 
 export default function RecentBlogs() {
   const { isPending, isError, data, error } = useGetRecentBlogs();

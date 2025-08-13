@@ -3,16 +3,9 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from './Button';
 import Image from 'next/image';
+import { navMenuItems } from '@/constants/navMenuItems';
 
 export default function NavBar() {
-  const menuItems = [
-    { title: 'Homepage', href: '/' },
-    { title: 'About us', href: '/about' },
-    { title: 'Features', href: '/features' },
-    { title: 'Blog', href: '/blog' },
-    { title: 'Contact us', href: '/contact' },
-  ];
-
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   return (
@@ -28,7 +21,7 @@ export default function NavBar() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
               <nav className="flex items-center gap-6">
-                {menuItems.map((item) => (
+                {navMenuItems.map((item) => (
                   <Link
                     key={item.title}
                     href={item.href}
@@ -52,9 +45,9 @@ export default function NavBar() {
                 aria-label="Toggle menu"
               >
                 {menuOpen ? (
-                  <Image src="/images/close.svg" width={24} height={24} alt="close menu" className="w-6 h-6" />
+                  <Image src="/images/close.svg" width={24} height={24} alt="close menu" className="size-6" />
                 ) : (
-                  <Image src="/images/menu.svg" width={24} height={24} alt="open menu" className="w-6 h-6" />
+                  <Image src="/images/menu.svg" width={24} height={24} alt="open menu" className="size-6" />
                 )}
               </button>
             </div>
@@ -66,7 +59,7 @@ export default function NavBar() {
           <div className="lg:hidden absolute top-full h-screen w-screen bg-white inset-y-0 shadow-lg z-40">
             <div className="px-4 py-6 flex flex-col items-center justify-center gap-y-4">
               <nav className="flex flex-col items-center justify-center space-y-4">
-                {menuItems.map((item) => (
+                {navMenuItems.map((item) => (
                   <Link
                     key={item.title}
                     href={item.href}

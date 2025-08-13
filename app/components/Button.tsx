@@ -1,10 +1,5 @@
-import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
-
-type ButtonPropType = {
-  children: ReactNode;
-  variant?: 'primary' | 'outline';
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+import { ButtonPropType } from '../type';
 
 export default function Button({ children, variant = 'primary', ...props }: ButtonPropType) {
   let buttonClassName = '';

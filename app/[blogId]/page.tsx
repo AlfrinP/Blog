@@ -1,17 +1,12 @@
 'use client';
 
 import { useGetBlogs } from '@/app/api/posts/query';
-import { markdownToHtml } from '@/utils/blogs';
+import { markdownToHtml } from '@/utils/markdownToHtml';
 import { use, useEffect, useState } from 'react';
 import GlobalError from '../global-error';
 import Head from 'next/head';
 import { usePathname } from 'next/navigation';
-
-type BlogPageProps = {
-  params: Promise<{
-    blogId: string;
-  }>;
-};
+import { BlogPageProps } from '../type';
 
 export default function Blog({ params }: BlogPageProps) {
   const { blogId } = use(params);
