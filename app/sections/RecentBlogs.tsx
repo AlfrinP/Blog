@@ -31,7 +31,8 @@ export default function RecentBlogs() {
             profilePic={blogData.author.profilePic}
             profileName={blogData.author.authorName}
             timeToRead={blogData.timeToRead}
-            key={blogData.title}
+            key={blogData.blogId}
+            blogId={blogData.blogId}
           />
         ))}
       </div>

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useGetBlogs } from "@/app/api/posts/query";
-import Badge from "@/components/Badge";
-import { blogsDataList } from "@/constants/data";
-import Image from "next/image";
-import { use } from "react";
+import { useGetBlogs } from '@/app/api/posts/query';
+import { markdownToHtml } from '@/utils/blogs';
+import { use, useEffect, useState } from 'react';
+import GlobalError from '../global-error';
+
 type BlogPageProps = {
   params: Promise<{
     blogId: string;
@@ -12,38 +12,37 @@ type BlogPageProps = {
 };
 
 export default function Blog({ params }: BlogPageProps) {
-  const { blogId } = use(params); // Use React.use() to unwrap the Promise
-  const { isPending, isError, data, error } = useGetBlogs(blogId);
+  const { blogId } = use(params);
+  const { data, isError, error, refetch, isLoading } = useGetBlogs(blogId);
 
-  return (
-    <div className="max-w-7xl w-full mx-auto p-4.5 space-y-4.5">
-      <h1 className="text-7xl">{blogsDataList[0].title}</h1>
-      <div className="flex gap-5 items-center">
-        <div className="flex items-center justify-start gap-2">
-          <Image
-            src={blogsDataList[0].author.profilePic}
-            alt={blogsDataList[0].author.authorName}
-            width={100}
-            height={100}
-            className="rounded-full size-7 object-cover"
-          />
-          <span className="text-gray-700">
-            {blogsDataList[0].author.authorName}
-          </span>
-          <div className="rounded-full size-1 bg-gray-700"></div>
-          <span className="text-gray-700">{`${blogsDataList[0].timeToRead} min read`}</span>
-        </div>
-        <div className="flex-1 h-[1px] bg-gray-700 rounded-2xl"></div>
-        <Badge text={blogsDataList[0].category} />
+  const [htmlContent, setHtmlContent] = useState<string>('');
+
+  useEffect(() => {
+    if (data) {
+      const convertContent = async () => {
+        try {
+          const html = await markdownToHtml(data.data);
+          setHtmlContent(html);
+        } catch (err) {
+          console.error('Error converting markdown to HTML:', err);
+          setHtmlContent(data.data);
+        }
+      };
+      convertContent();
+    }
+  }, [data]);
+
+  if (isError) {
+    return <GlobalError error={error as Error} reset={refetch} resetButtonText="Retry" />;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full size-10 border-t-2 border-b-2 border-gray-900"></div>
       </div>
-      <Image
-        src={blogsDataList[0].img}
-        alt={blogsDataList[0].title}
-        width={1000}
-        height={1000}
-        className="w-full rounded-2xl h-[500px] object-cover"
-      />
-      <p className="text-xl text-left ">{blogsDataList[0].data}</p>
-    </div>
-  );
+    );
+  }
+
+  return <div className="blog-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 }

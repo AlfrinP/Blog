@@ -18,11 +18,9 @@ export default function FeaturedBlogs() {
 
   if (data) featuredBlogs = data;
 
-  console.log(featuredBlogs);
-
   return (
     <section className="md:flex-row flex-col flex gap-5">
-      <Link className="relative w-full md:w-3/5 flex-1 rounded-xl overflow-clip" href="123">
+      <Link className="relative w-full md:w-3/5 flex-1 rounded-xl overflow-clip" href={`/${featuredBlogs[0].blogId}`}>
         {featuredBlogs[0] ? (
           <>
             <Image
@@ -43,7 +41,12 @@ export default function FeaturedBlogs() {
         <span className="font-medium text-lg sm:text-xl md:text-2xl text-slate-800">Other featured posts</span>
         <div className="flex flex-col gap-2.5 divide-y-[1.5px] divide-gray-200 pt-2 *:pb-2 *:last:pb-0 w-full">
           {featuredBlogs?.slice(1, 6).map((blogData: BlogPost) => (
-            <BlogCardMini thumbNail={blogData.img} title={blogData.title} key={blogData.title} />
+            <BlogCardMini
+              blogId={blogData.blogId}
+              thumbNail={blogData.img}
+              title={blogData.title}
+              key={blogData.blogId}
+            />
           ))}
         </div>
       </div>

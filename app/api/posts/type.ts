@@ -4,6 +4,7 @@ export type Author = {
 };
 
 export type BlogPost = {
+  blogId: string;
   title: string;
   description: string;
   author: Author;
