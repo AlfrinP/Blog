@@ -4,6 +4,8 @@ import { useGetBlogs } from '@/app/api/posts/query';
 import { markdownToHtml } from '@/utils/blogs';
 import { use, useEffect, useState } from 'react';
 import GlobalError from '../global-error';
+import Head from 'next/head';
+import { usePathname } from 'next/navigation';
 
 type BlogPageProps = {
   params: Promise<{
@@ -32,6 +34,8 @@ export default function Blog({ params }: BlogPageProps) {
     }
   }, [data]);
 
+  const pathname = usePathname();
+
   if (isError) {
     return <GlobalError error={error as Error} reset={refetch} resetButtonText="Retry" />;
   }
@@ -44,5 +48,21 @@ export default function Blog({ params }: BlogPageProps) {
     );
   }
 
-  return <div className="blog-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+  return (
+    <>
+      <Head>
+        <title>{data?.title}</title>
+        <meta name="description" content={data?.description} />
+        <meta
+          name="keywords"
+          content={`blogs, stories, lifestyle, travel, technology, health, personal growth, creativity, ideas , ${data?.category}`}
+        />
+        <meta property="og:title" content={data?.title} />
+        <meta property="og:description" content={data?.description} />
+        <meta property="og:image" content="https://alfrin.vercel.app/favicon.ico" />
+        <meta property="og:url" content={pathname} />
+      </Head>
+      <div className="blog-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    </>
+  );
 }
