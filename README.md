@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpenMind Blog
+
+A modern, elegant, and fully responsive blog platform built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- SSR and SEO-optimized with dynamic metadata
+- Clean architecture and feature-based organization
+- Elegant Markdown rendering with custom styles
+- Dynamic search bar for filtering posts
+- Responsive design and accessibility best practices
+- Image optimization with Next.js Image component
+- Linting, formatting, and pre-commit hooks
+- Sitemap and robots.txt for SEO
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/AlfrinP/Blog.git
+cd Blog
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Set up environment variables
 
-## Learn More
+Create a .env.local file in the root and add any required variables (API URLs, secrets, etc).
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Run the development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+bun run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
-## Deploy on Vercel
+### 5. Build for production
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+bun run build
+bun run start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+/app           # Next.js App Router pages and sections
+/app/components    # Reusable UI components
+/app/styles        # Global and markdown styles
+/app/api           # API logic, types, and services
+/utils         # Utility functions
+/public        # Static assets (images, favicon, etc)
+```
+
+## Linting & Formatting
+
+- ESLint and Prettier are set up for code quality.
+- Use `bun run lint` and `bun run lint:fix` to check and fix issues.
+- Pre-commit hooks are enabled via Husky and lint-staged.
+
+## Markdown Styling
+
+- Custom styles for `.blog-content` in `styles/blogContent.css`.
+
+## Contributing
+
+Pull requests and issues are welcome! Please follow the code style and add tests for new features.
+
+## License
+
+MIT
