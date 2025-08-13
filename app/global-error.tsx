@@ -12,7 +12,16 @@ export default function GlobalError({ error, reset, resetButtonText = 'Try again
   return (
     <html>
       <body className="h-screen w-screen flex flex-col items-center gap-5 justify-center">
-        <Image src="/images/error-image.jpg" alt="error" width={1000} height={1000} priority className="w-72" />
+        <Image
+          src="/images/error-image.webp"
+          placeholder="blur"
+          blurDataURL="/images/blur-image.webp"
+          alt="error"
+          width={1000}
+          height={1000}
+          priority
+          className="w-72"
+        />
         <h2 className="text-2xl font-semibold">Something went wrong!</h2>
         <div className="flex gap-5 *:text-nowrap">
           <Button onClick={() => reset()}>{resetButtonText}</Button>

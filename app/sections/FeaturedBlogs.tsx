@@ -26,8 +26,10 @@ export default function FeaturedBlogs() {
             <Image
               src={featuredBlogs[0].img}
               alt={featuredBlogs[0].title}
+              placeholder="blur"
               width={1000}
               height={1000}
+              blurDataURL="/images/blur-image.webp"
               className="relative size-full object-cover"
             />
             <div className="absolute w-full h-1/5 sm:h-1/4 min-h-fit z-10 bottom-0 p-2 sm:p-5 flex-col flex items-start justify-center backdrop-filter backdrop-blur-xs">

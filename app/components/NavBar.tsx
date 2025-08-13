@@ -45,9 +45,9 @@ export default function NavBar() {
                 aria-label="Toggle menu"
               >
                 {menuOpen ? (
-                  <Image src="/images/close.svg" width={24} height={24} alt="close menu" className="size-6" />
+                  <Image src="/images/close.webp" width={24} height={24} alt="close menu" className="size-6" />
                 ) : (
-                  <Image src="/images/menu.svg" width={24} height={24} alt="open menu" className="size-6" />
+                  <Image src="/images/menu.webp" width={24} height={24} alt="open menu" className="size-6" />
                 )}
               </button>
             </div>
