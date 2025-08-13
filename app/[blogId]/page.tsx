@@ -1,63 +1,35 @@
-'use client';
-
-import { useGetBlogs } from '@/app/api/posts/query';
-import { markdownToHtml } from '@/utils/markdownToHtml';
-import { use, useEffect, useState } from 'react';
-import GlobalError from '../global-error';
-import Head from 'next/head';
-import { usePathname } from 'next/navigation';
+// app/blog/[blogId]/page.tsx
+import { getBlogs } from '@/app/api/posts/query';
 import { BlogPageProps } from '../type';
+import BlogClient from './BlogClient';
 
-export default function Blog({ params }: BlogPageProps) {
-  const { blogId } = use(params);
-  const { data, isError, error, refetch, isLoading } = useGetBlogs(blogId);
+export async function generateMetadata({ params }: BlogPageProps) {
+  const { blogId } = params;
+  const response = await getBlogs(blogId);
+  const blog = response.data;
 
-  const [htmlContent, setHtmlContent] = useState<string>('');
+  return {
+    title: blog.title,
+    description: blog.description,
+    keywords: [blog.category, blog.title, 'blog', 'OpenMind'],
+    openGraph: {
+      title: blog.title,
+      description: blog.description,
+      images: [{ url: blog.img, alt: blog.title }],
+      url: `https://your-domain.com/blog/${blogId}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: blog.title,
+      description: blog.description,
+      images: [blog.img],
+    },
+    alternates: {
+      canonical: `https://your-domain.com/blog/${blogId}`,
+    },
+  };
+}
 
-  useEffect(() => {
-    if (data) {
-      const convertContent = async () => {
-        try {
-          const html = await markdownToHtml(data.data);
-          setHtmlContent(html);
-        } catch (err) {
-          console.error('Error converting markdown to HTML:', err);
-          setHtmlContent(data.data);
-        }
-      };
-      convertContent();
-    }
-  }, [data]);
-
-  const pathname = usePathname();
-
-  if (isError) {
-    return <GlobalError error={error as Error} reset={refetch} resetButtonText="Retry" />;
-  }
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full size-10 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <Head>
-        <title>{data?.title}</title>
-        <meta name="description" content={data?.description} />
-        <meta
-          name="keywords"
-          content={`blogs, stories, lifestyle, travel, technology, health, personal growth, creativity, ideas , ${data?.category}`}
-        />
-        <meta property="og:title" content={data?.title} />
-        <meta property="og:description" content={data?.description} />
-        <meta property="og:image" content="https://alfrin.vercel.app/favicon.ico" />
-        <meta property="og:url" content={pathname} />
-      </Head>
-      <div className="blog-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />
-    </>
-  );
+export default async function BlogPage({ params }: BlogPageProps) {
+  return <BlogClient blogId={params.blogId} />;
 }
